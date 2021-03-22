@@ -368,7 +368,7 @@ class PlayPause:
         # Throws a UserWarning that I have been unable to supress, other users online seem to have same issue
         PlayPause.PlotFigure.tight_layout()  # reduces the border around the plot
 
-        # Contains external code, cited in report
+        # Contains external code from https://pythonprogramming.net/how-to-embed-matplotlib-graph-tkinter-gui/
         Canvas = FigureCanvasTkAgg(PlayPause.PlotFigure, master=self.Window) # prepares the figure for placement on the grid
         Canvas.get_tk_widget().grid(row=0, column=1, rowspan=2, columnspan=16) # positions the figure on the grid
         Canvas.draw()
