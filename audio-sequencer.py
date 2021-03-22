@@ -1,7 +1,8 @@
+# Requires install of PortAudio
+
 # Package imports
+
 import numpy  # numpy arrays are used to store and manipulate audio
-# Throws the following error on the university linux pc OSError: PortAudio library not found
-# Requires the install of the PortAudio library
 import sounddevice  # Used to output audio
 import soundfile  # used to save audio as wav file
 import scipy.signal  # used to create numpy arrays for different wavetypes and for audio filtering
@@ -20,8 +21,6 @@ import matplotlib.cbook
 matplotlib.use('TkAgg')
 warnings.filterwarnings("ignore", category=matplotlib.cbook.mplDeprecation)
 
-
-# Class and function arguments were not capitalised/CamelCase to help identify them/improve readability
 # Global is used for certain variables because you cannot return to a widget callback/command
 
 # This is a parent class for all buttons with a toggle cycle effect
@@ -124,7 +123,7 @@ class BPMEntryField:
     def __init__(self, window, row, column):
         # Creates entry widget, when a character is entered ForceNumbers is called, this must return True for
         # character to be accepted
-        # Contains external code (cited in report)
+        # Contains external code from https://riptutorial.com/tkinter/example/27780/adding-validation-to-an-entry-widget
         self.EntryField = Entry(window, width=5, validate="key",
                                 validatecommand=((window.register(self.ForceNumbers)), '%S'))
         self.EntryField.insert(0, 120)  # inserts default value into entry field
@@ -171,7 +170,7 @@ class Sliders:
         SliderValues[self.Row-2] = int(value)
 
 
-class PlayPause: #shoould add argument or something for BPM
+class PlayPause:
     # Function initialises instances of the class
     def __init__(self, window, bpm, playrow=0, playcolumn=19, pauserow=0, pausecolumn=20, saverow=0, savecolumn=0):
         # Creates buttons and text entry field
@@ -207,8 +206,6 @@ class PlayPause: #shoould add argument or something for BPM
         self.PlotAudio(PlayPause.SilentChannel) # plots a blank audio file on the figure
 
     # Envelopes are used in this program to fade in, fade out and to shorten the length of the sounds
-    # In order to calculate the product of 2 numpy arrays they must be the same length so care was taken to ensure
-    # there were no errors caused by rounding
     def EnvelopeGenerator(self, attack, release, silence, beatlength):
         # numpy array  with values 0 to 1 with length of attack (fade in)
         AttackArray = numpy.linspace(0, 1, num=int(attack))
@@ -407,7 +404,7 @@ NoteFrequencies = {'A': 55, 'A#': 58.27, 'B': 61.74, 'C': 65.41, 'C#': 69.3, 'D'
                    'E': 82.41, 'F': 87.31, 'F#': 92.5, 'G': 98, 'G#': 103.83}
 
 # Entry of location of snare drum file for import, with error checking
-SnareLocation = r'C:\Users\Charlie\Documents\Snare.wav'
+SnareLocation = r'Snare.wav'
 # While loop repeats until file ends with .wav and exists
 while not SnareLocation.endswith('.wav') or not os.path.isfile(SnareLocation):
     print("Invalid file type/location, only compatible with .wav files")
